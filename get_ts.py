@@ -62,12 +62,12 @@ tickers_top10 = [
     "MUV2.DE",  # Munich Re        ~€71B
     "DBK.DE",   # Deutsche Bank    ~€56B
 ]
-ticker_index = ["^GDAXI"]
 
-tickers_constituents = tickers_top10
+ticker_index = ["^GDAXI"]
+tickers_constituents = tickers_top5
 
 data = yf.download(tickers_constituents + ticker_index, start="2024-01-01", end="2024-12-31", auto_adjust=True)["Close"]
-data = data.dropna()  # align trading days, drop rows with gaps
+data = data.dropna()
 
 ts_constituents = data[tickers_constituents].to_numpy()
 ts_index = data[ticker_index].to_numpy().squeeze()
